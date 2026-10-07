@@ -21,11 +21,11 @@ from utils.plot import plot_covariance_ellipse
 Q = np.diag([
     0.1,  # variance of location on x-axis
     0.1,  # variance of location on y-axis
-    np.deg2rad(1.0),  # variance of yaw angle
-    0.4,  # variance of velocity
-    0.1  # variance of scale factor
+    np.deg2rad(10.0),  # variance of yaw angle
+    4,  # variance of velocity
+    1  # variance of scale factor
 ]) ** 2  # predict state covariance
-R = np.diag([0.1, 0.1]) ** 2  # Observation x,y position covariance
+R = np.diag([2, 2]) ** 2  # Observation x,y position covariance
 
 #  Simulation parameter
 INPUT_NOISE = np.diag([0.1, np.deg2rad(5.0)]) ** 2
@@ -48,10 +48,10 @@ def observation(xTrue, xd, u):
     xTrue = motion_model(xTrue, u)
 
     # add noise to gps x-y
-    z = observation_model(xTrue) + GPS_NOISE @ np.random.randn(2, 1)
+    z = observation_model(xTrue) + np.linalg.cholesky(GPS_NOISE) @ np.random.randn(2, 1)
 
     # add noise to input
-    ud = u + INPUT_NOISE @ np.random.randn(2, 1)
+    ud = u + np.linalg.cholesky(INPUT_NOISE) @ np.random.randn(2, 1)
 
     xd = motion_model(xd, ud)
 
