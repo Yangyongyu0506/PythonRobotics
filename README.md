@@ -104,6 +104,10 @@ or this paper for more details:
 For running each sample code:
 
 - [Python 3.13.x](https://www.python.org/)
+
+Recommended with uv:
+
+- [uv](https://docs.astral.sh/uv/)
  
 - [NumPy](https://numpy.org/)
  
@@ -146,6 +150,12 @@ All animation gifs are stored here: [AtsushiSakai/PythonRoboticsGifs: Animation 
 
 2. Install the required libraries.
 
+- using uv :
+
+   ```terminal
+   uv sync
+   ```
+
 - using conda :
 
   ```terminal
@@ -160,6 +170,12 @@ All animation gifs are stored here: [AtsushiSakai/PythonRoboticsGifs: Animation 
 
 
 3. Execute python script in each directory.
+
+   With uv, run commands in the managed environment like this:
+
+   ```terminal
+   uv run python PathPlanning/AStar/a_star.py
+   ```
 
 4. Add star to this repo if you like it :smiley:. 
 
